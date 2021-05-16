@@ -1,8 +1,10 @@
-package com.jonas.payoneer.homework;
+package com.jonas.payoneer.homework.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.jonas.payoneer.homework.R;
 
 public class MainActivity extends AppCompatActivity {
 
