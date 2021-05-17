@@ -1,7 +1,7 @@
 package com.jonas.payoneer.homework.repository.remote;
 
 import com.jonas.payoneer.homework.model.PaymentMethod;
-import com.jonas.payoneer.homework.network.entity.PaymentMethodEntity;
+import com.jonas.payoneer.homework.network.entity.PaymentMethodResponse;
 import com.jonas.payoneer.homework.network.mapper.PaymentMethodResponseMapper;
 import com.jonas.payoneer.homework.network.service.PaymentMethodService;
 
@@ -27,7 +27,7 @@ public class PaymentMethodRemoteRepositoryImpl implements PaymentMethodRemoteRep
 
     @Override
     public Response<List<PaymentMethod>> getListPaymentMethods() {
-        Response<List<PaymentMethodEntity>> response = paymentMethodService.getListPaymentMethods();
+        Response<List<PaymentMethodResponse>> response = paymentMethodService.getListPaymentMethods();
         Response<List<PaymentMethod>> convertedResponse;
 
         if (response.isSuccessful() && response.body() != null) {
