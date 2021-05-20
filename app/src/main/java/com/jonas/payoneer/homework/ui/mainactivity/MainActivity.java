@@ -1,20 +1,77 @@
 package com.jonas.payoneer.homework.ui.mainactivity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
-import com.jonas.payoneer.homework.R;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
+
+import com.jonas.payoneer.homework.databinding.ActivityMainBinding;
+import com.jonas.payoneer.homework.model.PaymentMethod;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 import dagger.hilt.android.AndroidEntryPoint;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 @AndroidEntryPoint
 public class MainActivity extends AppCompatActivity {
 
+    MainActivityViewModel viewModel;
+
+    private ActivityMainBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        viewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        subscribeFromPaymentMethodList();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    private void subscribeFromPaymentMethodList() {
+        viewModel.getPaymentMethodListUseCase.execute()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<List<PaymentMethod>>() {
+                               @Override
+                               public void onSubscribe(@NotNull Disposable d) {
+                                   //TODO Show loading
+                               }
+
+                               @Override
+                               public void onNext(@NotNull List<PaymentMethod> paymentMethods) {
+                                   //TODO Stop loading
+                                   //TODO load in adapter
+                               }
+
+                               @Override
+                               public void onError(@NotNull Throwable e) {
+                                   //TODO Show error
+                               }
+
+                               @Override
+                               public void onComplete() {
+                               }
+                           }
+                );
     }
 
 }
