@@ -6,7 +6,13 @@ import com.jonas.payoneer.homework.network.entity.PaymentMethodResponse;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 public class PaymentMethodResponseMapper {
+
+    @Inject
+    public PaymentMethodResponseMapper() {
+    }
 
     private PaymentMethod toModel(PaymentMethodResponse paymentMethodResponse) {
         PaymentMethod paymentMethod = new PaymentMethod();
@@ -15,7 +21,7 @@ public class PaymentMethodResponseMapper {
                 paymentMethodResponse.label
         );
         paymentMethod.setLogo(
-                paymentMethodResponse.logo
+                paymentMethodResponse.links.logo
         );
 
         return paymentMethod;
