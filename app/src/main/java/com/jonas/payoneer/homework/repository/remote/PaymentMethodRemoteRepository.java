@@ -4,10 +4,10 @@ import com.jonas.payoneer.homework.model.PaymentMethod;
 
 import java.util.List;
 
-import retrofit2.Response;
+import io.reactivex.Observable;
 
 public interface PaymentMethodRemoteRepository {
 
-    public Response<List<PaymentMethod>> getListPaymentMethods();
+    Observable<List<PaymentMethod>> getListPaymentMethods();
 
 }
