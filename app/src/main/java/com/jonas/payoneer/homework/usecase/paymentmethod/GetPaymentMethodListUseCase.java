@@ -5,19 +5,22 @@ import com.jonas.payoneer.homework.repository.remote.PaymentMethodRemoteReposito
 
 import java.util.List;
 
-import retrofit2.Response;
+import javax.inject.Inject;
+
+import io.reactivex.Observable;
 
 public class GetPaymentMethodListUseCase {
 
     private final PaymentMethodRemoteRepository paymentMethodRemoteRepository;
 
+    @Inject
     public GetPaymentMethodListUseCase(
             PaymentMethodRemoteRepository paymentMethodRemoteRepository
     ) {
         this.paymentMethodRemoteRepository = paymentMethodRemoteRepository;
     }
 
-    public Response<List<PaymentMethod>> execute() {
+    public Observable<List<PaymentMethod>> execute() {
         return paymentMethodRemoteRepository.getListPaymentMethods();
     }
 
