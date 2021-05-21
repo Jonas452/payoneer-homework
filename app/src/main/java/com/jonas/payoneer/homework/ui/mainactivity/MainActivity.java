@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.jonas.payoneer.homework.databinding.ActivityMainBinding;
 import com.jonas.payoneer.homework.model.PaymentMethod;
+import com.jonas.payoneer.homework.ui.adapter.PaymentMethodAdapter;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     MainActivityViewModel viewModel;
 
     private ActivityMainBinding binding;
+    private PaymentMethodAdapter paymentMethodAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         viewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
 
+        setupAdapter();
     }
 
     @Override
@@ -44,6 +47,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+    }
+
+    private void setupAdapter() {
+        paymentMethodAdapter = new PaymentMethodAdapter();
+        binding.paymentMethodList.setAdapter(paymentMethodAdapter);
     }
 
     private void subscribeFromPaymentMethodList() {
@@ -59,7 +67,9 @@ public class MainActivity extends AppCompatActivity {
                                @Override
                                public void onNext(@NotNull List<PaymentMethod> paymentMethods) {
                                    //TODO Stop loading
-                                   //TODO load in adapter
+                                   paymentMethodAdapter.updateList(
+                                           paymentMethods
+                                   );
                                }
 
                                @Override

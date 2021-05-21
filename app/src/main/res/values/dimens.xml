@@ -1,0 +1,6 @@
+<resources>
+
+    <dimen name="keyline">16dp</dimen>
+    <dimen name="keyline_half">8dp</dimen>
+
+</resources>
