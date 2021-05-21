@@ -11,6 +11,8 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
+        android:paddingTop="@dimen/keyline_half"
+        android:paddingBottom="@dimen/keyline_half"
         android:background="@color/snow_white"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"

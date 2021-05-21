@@ -2,7 +2,7 @@ package com.jonas.payoneer.homework.model;
 
 public class PaymentMethod {
     private String label;
-    private String logo;
+    private String logoURL;
 
     public String getLabel() {
         return label;
@@ -12,11 +12,11 @@ public class PaymentMethod {
         this.label = label;
     }
 
-    public String getLogo() {
-        return logo;
+    public String getLogoURL() {
+        return logoURL;
     }
 
-    public void setLogo(String logo) {
-        this.logo = logo;
+    public void setLogoURL(String logoURL) {
+        this.logoURL = logoURL;
     }
 }

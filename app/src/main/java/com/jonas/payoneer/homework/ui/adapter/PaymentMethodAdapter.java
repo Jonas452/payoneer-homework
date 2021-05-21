@@ -1,11 +1,14 @@
 package com.jonas.payoneer.homework.ui.adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.jonas.payoneer.homework.R;
 import com.jonas.payoneer.homework.databinding.ItemPaymentMethodBinding;
 import com.jonas.payoneer.homework.model.PaymentMethod;
 
@@ -15,7 +18,12 @@ import java.util.List;
 
 public class PaymentMethodAdapter extends RecyclerView.Adapter<PaymentMethodAdapter.PaymentMethodItemViewHolder> {
 
+    private final Context context;
     private List<PaymentMethod> paymentMethodList;
+
+    public PaymentMethodAdapter(Context context) {
+        this.context = context;
+    }
 
     @NonNull
     @NotNull
@@ -28,7 +36,7 @@ public class PaymentMethodAdapter extends RecyclerView.Adapter<PaymentMethodAdap
                 false
         );
 
-        return new PaymentMethodItemViewHolder(binding);
+        return new PaymentMethodItemViewHolder(context, binding);
     }
 
     @Override
@@ -48,15 +56,22 @@ public class PaymentMethodAdapter extends RecyclerView.Adapter<PaymentMethodAdap
 
     static class PaymentMethodItemViewHolder extends RecyclerView.ViewHolder {
 
-        ItemPaymentMethodBinding dataBinding;
+        private final Context context;
+        private final ItemPaymentMethodBinding dataBinding;
 
-        public PaymentMethodItemViewHolder(@NonNull @NotNull ItemPaymentMethodBinding dataBinding) {
+        public PaymentMethodItemViewHolder(Context context, @NonNull @NotNull ItemPaymentMethodBinding dataBinding) {
             super(dataBinding.getRoot());
+            this.context = context;
             this.dataBinding = dataBinding;
         }
 
         public void bind(PaymentMethod paymentMethod) {
             dataBinding.setItem(paymentMethod);
+
+            Glide.with(context)
+                    .load(paymentMethod.getLogoURL())
+                    .placeholder(R.drawable.ic_placeholder_image)
+                    .into(dataBinding.logo);
         }
 
     }

@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupAdapter() {
-        paymentMethodAdapter = new PaymentMethodAdapter();
+        paymentMethodAdapter = new PaymentMethodAdapter(this);
         binding.paymentMethodList.setAdapter(paymentMethodAdapter);
     }
 

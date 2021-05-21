@@ -20,7 +20,7 @@ public class PaymentMethodResponseMapper {
         paymentMethod.setLabel(
                 paymentMethodResponse.label
         );
-        paymentMethod.setLogo(
+        paymentMethod.setLogoURL(
                 paymentMethodResponse.links.logo
         );
 
