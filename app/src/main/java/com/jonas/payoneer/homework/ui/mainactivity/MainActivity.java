@@ -1,10 +1,13 @@
 package com.jonas.payoneer.homework.ui.mainactivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.jonas.payoneer.homework.R;
 import com.jonas.payoneer.homework.databinding.ActivityMainBinding;
 import com.jonas.payoneer.homework.model.PaymentMethod;
 import com.jonas.payoneer.homework.ui.adapter.PaymentMethodAdapter;
@@ -61,12 +64,14 @@ public class MainActivity extends AppCompatActivity {
                 .subscribe(new Observer<List<PaymentMethod>>() {
                                @Override
                                public void onSubscribe(@NotNull Disposable d) {
-                                   //TODO Show loading
+                                   binding.paymentMethodList.setVisibility(View.GONE);
+                                   binding.shimmerViewContainer.startShimmer();
                                }
 
                                @Override
                                public void onNext(@NotNull List<PaymentMethod> paymentMethods) {
-                                   //TODO Stop loading
+                                   binding.shimmerViewContainer.stopShimmer();
+                                   binding.paymentMethodList.setVisibility(View.VISIBLE);
                                    paymentMethodAdapter.updateList(
                                            paymentMethods
                                    );
@@ -74,7 +79,11 @@ public class MainActivity extends AppCompatActivity {
 
                                @Override
                                public void onError(@NotNull Throwable e) {
-                                   //TODO Show error
+                                   Toast.makeText(
+                                           MainActivity.this,
+                                           getString(R.string.error_loading_message),
+                                           Toast.LENGTH_LONG
+                                   ).show();
                                }
 
                                @Override

@@ -6,6 +6,33 @@
     android:layout_height="match_parent"
     tools:context=".ui.mainactivity.MainActivity" >
 
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer_view_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <include layout="@layout/item_payment_method_placeholder" />
+            <include layout="@layout/item_payment_method_placeholder" />
+            <include layout="@layout/item_payment_method_placeholder" />
+            <include layout="@layout/item_payment_method_placeholder" />
+            <include layout="@layout/item_payment_method_placeholder" />
+            <include layout="@layout/item_payment_method_placeholder" />
+            <include layout="@layout/item_payment_method_placeholder" />
+        </LinearLayout>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/paymentMethodList"
         android:layout_width="0dp"
@@ -14,6 +41,7 @@
         android:paddingTop="@dimen/keyline_half"
         android:paddingBottom="@dimen/keyline_half"
         android:background="@color/snow_white"
+        android:visibility="gone"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

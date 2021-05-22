@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">PayoneerHomework</string>
     <string name="payment_method_logo_description">Logo of the payment method</string>
+    <string name="error_loading_message">Error loading payment methods. Try again</string>
 </resources>
